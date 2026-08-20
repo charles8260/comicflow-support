@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ComicFlow — Privacy Policy</title>
+<style>
+:root {
+  --bg: #09090B;
+  --surface: #161619;
+  --border: #26262C;
+  --text: #ECEBE6;
+  --text-dim: #87838D;
+  --accent: #FFBE0B;
+  --fd: "Avenir Next Condensed","Roboto Condensed","Arial Narrow",system-ui,sans-serif;
+  --fb: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --fm: "SF Mono",ui-monospace,"Cascadia Code","Menlo",monospace;
+}
+@media(prefers-color-scheme:light){:root{
+  --bg:#F6F4EF;--surface:#FFF;--border:#D5D1C9;
+  --text:#1A1A1D;--text-dim:#6E6A75;--accent:#B88600;
+}}
+:root[data-theme="light"]{
+  --bg:#F6F4EF;--surface:#FFF;--border:#D5D1C9;
+  --text:#1A1A1D;--text-dim:#6E6A75;--accent:#B88600;
+}
+:root[data-theme="dark"]{
+  --bg:#09090B;--surface:#161619;--border:#26262C;
+  --text:#ECEBE6;--text-dim:#87838D;--accent:#FFBE0B;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--fb);background:var(--bg);color:var(--text);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{opacity:.8}
+
+.header{padding:4rem 1.5rem 3rem;border-bottom:1px solid var(--border)}
+.header-inner{max-width:680px;margin:0 auto}
+.header-brand{font-family:var(--fd);font-weight:700;font-size:.875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;display:inline-block;margin-bottom:1.5rem}
+.header h1{font-family:var(--fd);font-weight:700;font-size:clamp(1.75rem,4vw,2.5rem);text-transform:uppercase;line-height:1.05;letter-spacing:-.01em}
+.header p{margin-top:.75rem;color:var(--text-dim);max-width:480px;font-size:.875rem}
+
+.main{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+.main h2{font-family:var(--fd);font-weight:700;font-size:1.125rem;text-transform:uppercase;letter-spacing:.02em;margin-top:2.5rem;margin-bottom:.75rem;display:flex;align-items:center;gap:.625rem}
+.main h2::before{content:'';display:block;width:16px;height:2.5px;background:var(--accent);flex-shrink:0}
+.main p{color:var(--text-dim);font-size:.9375rem;margin-bottom:.75rem}
+.main ul{color:var(--text-dim);font-size:.9375rem;margin-bottom:.75rem;padding-left:1.5rem}
+.main li{margin-bottom:.375rem}
+
+.footer{padding:3rem 1.5rem;text-align:center;border-top:1px solid var(--border)}
+.footer p{font-size:.75rem;color:var(--text-dim)}
+.footer a{color:var(--text-dim);text-decoration:none}
+.footer a:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="header-brand">ComicFlow</a>
+    <h1>Privacy Policy</h1>
+    <p>Last updated: August 20, 2026</p>
+  </div>
+</header>
+
+<main class="main">
+  <h2>Overview</h2>
+  <p>ComicFlow is a comic and manga reader for Apple TV. We respect your privacy and are committed to protecting it. This policy explains what data ComicFlow collects and how it is used.</p>
+
+  <h2>Data We Do Not Collect</h2>
+  <p>ComicFlow does not collect, store, or transmit any personal data to external servers. Specifically:</p>
+  <ul>
+    <li>No account registration is required</li>
+    <li>No analytics or tracking SDKs are included</li>
+    <li>No advertising frameworks are used</li>
+    <li>No personal information is shared with third parties</li>
+  </ul>
+
+  <h2>Data Stored Locally</h2>
+  <p>The following data is stored locally on your Apple TV device and never leaves it:</p>
+  <ul>
+    <li><strong>Reading progress</strong> — which page you last read in each title</li>
+    <li><strong>Favorites</strong> — titles you have marked as favorites</li>
+    <li><strong>Server credentials</strong> — if you connect to a comic server (Komga, Kavita, OPDS) or network storage (SMB, WebDAV), your server URLs and login credentials are stored locally on your device</li>
+    <li><strong>App preferences</strong> — language, reader settings, and display options</li>
+    <li><strong>Purchase status</strong> — whether you have purchased the unlimited reading unlock</li>
+  </ul>
+
+  <h2>Network Connections</h2>
+  <p>ComicFlow connects to external servers only when you explicitly configure them:</p>
+  <ul>
+    <li>Comic servers (Komga, Kavita, OPDS) you add in Settings</li>
+    <li>Network storage (SMB, WebDAV) you add in Settings</li>
+    <li>Third-party manga source repositories you add via URL</li>
+    <li>Apple's App Store servers for in-app purchase verification</li>
+  </ul>
+  <p>ComicFlow does not make any network requests on its own beyond what you configure.</p>
+
+  <h2>In-App Purchases</h2>
+  <p>ComicFlow offers a one-time in-app purchase to unlock unlimited reading. All purchase transactions are handled by Apple through the App Store. ComicFlow does not process or store any payment information.</p>
+
+  <h2>Children's Privacy</h2>
+  <p>ComicFlow is not directed at children under 13. We do not knowingly collect any information from children.</p>
+
+  <h2>Changes to This Policy</h2>
+  <p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated revision date.</p>
+
+  <h2>Contact</h2>
+  <p>If you have any questions about this privacy policy, please contact us at <a href="mailto:charles8260@gmail.com">charles8260@gmail.com</a>.</p>
+</main>
+
+<footer class="footer">
+  <p><a href="index.html">ComicFlow</a>&ensp;·&ensp;<a href="support.html">Support</a>&ensp;·&ensp;© 2026 ComicFlow</p>
+</footer>
+
+</body>
+</html>
