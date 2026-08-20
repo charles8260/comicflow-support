@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ComicFlow — Comics on Apple TV</title>
+<style>
+:root {
+  --bg: #09090B;
+  --bg-alt: #0F0F13;
+  --surface: #161619;
+  --border: #26262C;
+  --text: #ECEBE6;
+  --text-dim: #87838D;
+  --accent: #FFBE0B;
+  --accent-dim: rgba(255,190,11,0.07);
+  --accent-on: #09090B;
+  --stroke: #ECEBE6;
+  --fd: "Avenir Next Condensed","Roboto Condensed","Arial Narrow",system-ui,sans-serif;
+  --fb: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --fm: "SF Mono",ui-monospace,"Cascadia Code","Menlo",monospace;
+}
+@media(prefers-color-scheme:light){:root{
+  --bg:#F6F4EF;--bg-alt:#EDEBE4;--surface:#FFF;--border:#D5D1C9;
+  --text:#1A1A1D;--text-dim:#6E6A75;--accent:#B88600;
+  --accent-dim:rgba(184,134,0,0.06);--accent-on:#FFF;--stroke:#1A1A1D;
+}}
+:root[data-theme="light"]{
+  --bg:#F6F4EF;--bg-alt:#EDEBE4;--surface:#FFF;--border:#D5D1C9;
+  --text:#1A1A1D;--text-dim:#6E6A75;--accent:#B88600;
+  --accent-dim:rgba(184,134,0,0.06);--accent-on:#FFF;--stroke:#1A1A1D;
+}
+:root[data-theme="dark"]{
+  --bg:#09090B;--bg-alt:#0F0F13;--surface:#161619;--border:#26262C;
+  --text:#ECEBE6;--text-dim:#87838D;--accent:#FFBE0B;
+  --accent-dim:rgba(255,190,11,0.07);--accent-on:#09090B;--stroke:#ECEBE6;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--fb);background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%}
+
+.nav{position:fixed;top:0;width:100%;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:54px;backdrop-filter:blur(16px) saturate(180%);-webkit-backdrop-filter:blur(16px) saturate(180%);background:color-mix(in srgb,var(--bg) 85%,transparent);border-bottom:1px solid var(--border)}
+.nav-brand{font-family:var(--fd);font-weight:700;font-size:.9375rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--text)}
+.nav-link{font-size:.8125rem;color:var(--text-dim);text-decoration:none;transition:color .15s}
+.nav-link:hover{color:var(--text)}
+
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 4rem;position:relative;overflow:hidden}
+.hero-dots{position:absolute;inset:0;background-image:radial-gradient(var(--border) 1px,transparent 1px);background-size:14px 14px;opacity:.45}
+.hero-glow{position:absolute;top:50%;left:50%;width:520px;height:520px;transform:translate(-50%,-50%);background:radial-gradient(circle,var(--accent) 0%,transparent 65%);opacity:.05;pointer-events:none}
+.hero h1{font-family:var(--fd);font-weight:700;font-size:clamp(4.5rem,14vw,11rem);line-height:.85;letter-spacing:-.02em;text-transform:uppercase;position:relative;animation:fade-up .7s ease both}
+.hero h1 em{display:block;font-style:normal;color:var(--accent)}
+.hero-sub{margin-top:1.5rem;font-size:clamp(1rem,2.5vw,1.375rem);color:var(--text-dim);max-width:420px;line-height:1.5;animation:fade-up .7s ease .12s both}
+.badge{margin-top:2.5rem;display:inline-flex;align-items:center;gap:.625rem;padding:.625rem 1.25rem;border:1.5px solid var(--border);border-radius:999px;font-size:.8125rem;color:var(--text-dim);text-decoration:none;transition:border-color .2s,color .2s;animation:fade-up .7s ease .24s both}
+.badge:hover{border-color:var(--accent);color:var(--text)}
+.badge svg{width:16px;height:16px;fill:currentColor}
+@keyframes fade-up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+.s{padding:5rem 1.5rem}
+.s--alt{background:var(--bg-alt)}
+.wrap{max-width:900px;margin:0 auto}
+.eyebrow{font-family:var(--fm);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.875rem}
+h2{font-family:var(--fd);font-weight:700;font-size:clamp(1.75rem,4.5vw,2.75rem);text-transform:uppercase;line-height:1.05;text-wrap:balance;letter-spacing:-.01em}
+.lead{margin-top:1rem;font-size:1.0625rem;color:var(--text-dim);max-width:520px;line-height:1.7}
+
+.panels-wrap{padding:0 1.5rem 5rem}
+.panels{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,minmax(130px,auto));outline:2.5px solid var(--stroke)}
+.panel{padding:1.75rem;border:1.25px solid var(--stroke);display:flex;flex-direction:column;justify-content:flex-end;gap:.5rem;position:relative;transition:background .2s,box-shadow .25s}
+.panel:hover{background:var(--accent-dim);box-shadow:0 4px 28px rgba(0,0,0,.25);z-index:1}
+.panel:nth-child(1){grid-column:1;grid-row:1/3}
+.panel:nth-child(2){grid-column:2;grid-row:1}
+.panel:nth-child(3){grid-column:2;grid-row:2}
+.panel:nth-child(4){grid-column:1;grid-row:3}
+.panel:nth-child(5){grid-column:2;grid-row:3/5}
+.panel:nth-child(6){grid-column:1;grid-row:4}
+.panel-bar{width:20px;height:2.5px;background:var(--accent);margin-bottom:.25rem}
+.panel h3{font-family:var(--fd);font-weight:700;font-size:1.125rem;text-transform:uppercase;letter-spacing:.02em;line-height:1.2}
+.panel p{font-size:.875rem;color:var(--text-dim);line-height:1.5}
+
+.pills{display:flex;flex-wrap:wrap;gap:.625rem;margin-top:2rem}
+.pill{padding:.5rem 1rem;border:1.5px solid var(--border);border-radius:999px;font-family:var(--fm);font-size:.75rem;letter-spacing:.04em;color:var(--text-dim);transition:border-color .2s,color .2s}
+.pill:hover{border-color:var(--accent);color:var(--text)}
+
+.pricing-grid{margin-top:2.5rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border-radius:12px;overflow:hidden}
+.tier{padding:2rem 1.5rem;background:var(--surface);display:flex;flex-direction:column;gap:.5rem}
+.tier--hl{background:var(--accent);color:var(--accent-on)}
+.tier--hl .tier-label{color:var(--accent-on);opacity:.65}
+.tier--hl .tier-desc{color:var(--accent-on);opacity:.8}
+.tier-label{font-family:var(--fm);font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.tier-name{font-family:var(--fd);font-weight:700;font-size:1.25rem;text-transform:uppercase;letter-spacing:.02em}
+.tier-desc{font-size:.8125rem;color:var(--text-dim);line-height:1.5}
+
+.footer{padding:3rem 1.5rem;text-align:center;border-top:1px solid var(--border)}
+.footer p{font-size:.75rem;color:var(--text-dim)}
+.footer a{color:var(--text-dim);text-decoration:none;transition:color .15s}
+.footer a:hover{color:var(--accent)}
+
+@media(max-width:640px){
+  .panels{grid-template-columns:1fr;grid-template-rows:auto}
+  .panel:nth-child(n){grid-column:1;grid-row:auto}
+  .pricing-grid{grid-template-columns:1fr}
+  .nav{padding:0 1.25rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-brand">ComicFlow</a>
+  <a href="support.html" class="nav-link">Support</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-glow"></div>
+  <h1>Comic<em>Flow</em></h1>
+  <p class="hero-sub">Comics and manga on your biggest screen</p>
+  <a href="#" class="badge">
+    <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+    Available on Apple TV
+  </a>
+</section>
+
+<section class="s s--alt">
+  <div class="wrap">
+    <span class="eyebrow">Built In</span>
+    <h2>Open. Read. Enjoy.</h2>
+    <p class="lead">3 original comics, 81 pages of reading — ready the moment you open the app. No account, no server, no setup.</p>
+  </div>
+</section>
+
+<section class="s">
+  <div class="wrap">
+    <span class="eyebrow">Reader</span>
+    <h2>Every Feature Your Comics Deserve</h2>
+  </div>
+</section>
+
+<div class="panels-wrap">
+  <div class="panels">
+    <div class="panel">
+      <div class="panel-bar"></div>
+      <h3>Smart Panels</h3>
+      <p>Panel detection fills each frame to your screen. Read panel by panel, the way comics were meant to flow.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-bar"></div>
+      <h3>Double-Page Spread</h3>
+      <p>Spreads render edge to edge, as drawn.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-bar"></div>
+      <h3>CRT Filter</h3>
+      <p>Retro phosphor glow for that vintage feel.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-bar"></div>
+      <h3>Auto-Play</h3>
+      <p>Lean back. Pages turn themselves.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-bar"></div>
+      <h3>Reading Progress</h3>
+      <p>Pick up where you left off — across every title in your library. Continue reading from your home screen.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-bar"></div>
+      <h3>Image Filters</h3>
+      <p>Sharpen, saturate, adjust. Make every page yours.</p>
+    </div>
+  </div>
+</div>
+
+<section class="s s--alt">
+  <div class="wrap">
+    <span class="eyebrow">Your Library</span>
+    <h2>Every Source. One App.</h2>
+    <p class="lead">Connect your comic servers, mount network storage, or add manga sources from third-party repositories.</p>
+    <div class="pills">
+      <span class="pill">Komga</span>
+      <span class="pill">Kavita</span>
+      <span class="pill">OPDS</span>
+      <span class="pill">SMB</span>
+      <span class="pill">WebDAV</span>
+    </div>
+  </div>
+</section>
+
+<section class="s">
+  <div class="wrap">
+    <span class="eyebrow">Pricing</span>
+    <h2>Start Free. Stay Free.</h2>
+    <p class="lead">Full access for 7 days, then 5 free chapters daily. When you're ready, one purchase unlocks everything.</p>
+    <div class="pricing-grid">
+      <div class="tier">
+        <span class="tier-label">Free Trial</span>
+        <span class="tier-name">7 Days</span>
+        <span class="tier-desc">Full access to all features</span>
+      </div>
+      <div class="tier">
+        <span class="tier-label">Free Tier</span>
+        <span class="tier-name">5 Chapters</span>
+        <span class="tier-desc">Per day, every day</span>
+      </div>
+      <div class="tier tier--hl">
+        <span class="tier-label">Unlock All</span>
+        <span class="tier-name">One Purchase</span>
+        <span class="tier-desc">Unlimited reading, forever</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p><a href="support.html">Support</a>&ensp;·&ensp;© 2026 ComicFlow</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ComicFlow — Support</title>
+<style>
+:root {
+  --bg: #09090B;
+  --bg-alt: #0F0F13;
+  --surface: #161619;
+  --border: #26262C;
+  --text: #ECEBE6;
+  --text-dim: #87838D;
+  --accent: #FFBE0B;
+  --accent-on: #09090B;
+  --fd: "Avenir Next Condensed","Roboto Condensed","Arial Narrow",system-ui,sans-serif;
+  --fb: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --fm: "SF Mono",ui-monospace,"Cascadia Code","Menlo",monospace;
+}
+@media(prefers-color-scheme:light){:root{
+  --bg:#F6F4EF;--bg-alt:#EDEBE4;--surface:#FFF;--border:#D5D1C9;
+  --text:#1A1A1D;--text-dim:#6E6A75;--accent:#B88600;--accent-on:#FFF;
+}}
+:root[data-theme="light"]{
+  --bg:#F6F4EF;--bg-alt:#EDEBE4;--surface:#FFF;--border:#D5D1C9;
+  --text:#1A1A1D;--text-dim:#6E6A75;--accent:#B88600;--accent-on:#FFF;
+}
+:root[data-theme="dark"]{
+  --bg:#09090B;--bg-alt:#0F0F13;--surface:#161619;--border:#26262C;
+  --text:#ECEBE6;--text-dim:#87838D;--accent:#FFBE0B;--accent-on:#09090B;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--fb);background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none;transition:opacity .15s}
+a:hover{opacity:.8}
+
+.header{padding:4rem 1.5rem 3rem;border-bottom:1px solid var(--border)}
+.header-inner{max-width:680px;margin:0 auto}
+.header-brand{font-family:var(--fd);font-weight:700;font-size:.875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;display:inline-block;margin-bottom:1.5rem;transition:color .15s}
+.header-brand:hover{color:var(--text);opacity:1}
+.header h1{font-family:var(--fd);font-weight:700;font-size:clamp(1.75rem,4vw,2.5rem);text-transform:uppercase;line-height:1.05;letter-spacing:-.01em}
+.header p{margin-top:.75rem;color:var(--text-dim);max-width:480px}
+
+.main{max-width:680px;margin:0 auto;padding:0 1.5rem}
+
+.section{padding:2.5rem 0}
+.section + .section{border-top:1px solid var(--border)}
+.section-title{font-family:var(--fd);font-weight:700;font-size:1.125rem;text-transform:uppercase;letter-spacing:.02em;margin-bottom:1.25rem;display:flex;align-items:center;gap:.625rem}
+.section-title::before{content:'';display:block;width:16px;height:2.5px;background:var(--accent);flex-shrink:0}
+
+details{border-bottom:1px solid var(--border)}
+details:last-child{border-bottom:none}
+summary{padding:1rem 0;cursor:pointer;font-weight:600;font-size:.9375rem;list-style:none;display:flex;align-items:center;gap:.75rem;transition:color .15s}
+summary::-webkit-details-marker{display:none}
+summary::before{content:'+';display:flex;align-items:center;justify-content:center;width:22px;height:22px;font-family:var(--fm);font-size:.8125rem;color:var(--accent);border:1.5px solid var(--border);border-radius:4px;flex-shrink:0;transition:border-color .15s,background .15s}
+summary:hover{color:var(--accent)}
+summary:hover::before{border-color:var(--accent)}
+details[open] summary::before{content:'\2212';background:var(--accent);color:var(--accent-on);border-color:var(--accent)}
+details[open] summary{color:var(--text)}
+.answer{padding:0 0 1.25rem 2.5rem;color:var(--text-dim);line-height:1.7;font-size:.9375rem}
+.answer p + p{margin-top:.75rem}
+
+.contact-card{margin-top:1rem;padding:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;display:flex;flex-direction:column;gap:.375rem}
+.contact-label{font-family:var(--fm);font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim)}
+.contact-value{font-weight:600;font-size:1rem}
+.contact-value a{color:var(--accent)}
+
+.footer{padding:3rem 1.5rem;text-align:center;border-top:1px solid var(--border);margin-top:1rem}
+.footer p{font-size:.75rem;color:var(--text-dim)}
+.footer a{color:var(--text-dim);text-decoration:none;transition:color .15s}
+.footer a:hover{color:var(--accent);opacity:1}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="header-brand">ComicFlow</a>
+    <h1>Support</h1>
+    <p>Find answers to common questions, or reach out directly if you need help.</p>
+  </div>
+</header>
+
+<main class="main">
+  <div class="section">
+    <div class="section-title">Getting Started</div>
+    <details>
+      <summary>How do I start reading?</summary>
+      <div class="answer">
+        <p>Open ComicFlow on your Apple TV. The Library tab shows 3 built-in sample comics (81 pages total) — tap any title and start reading. No account or server connection required.</p>
+      </div>
+    </details>
+    <details>
+      <summary>What can the reader do?</summary>
+      <div class="answer">
+        <p>Page turning, smart panel mode (reads panel by panel), double-page spreads, CRT retro filter, image adjustment filters, auto-play, and reading progress tracking. All features work with both the built-in demo comics and your own library.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Servers &amp; Sources</div>
+    <details>
+      <summary>What servers are supported?</summary>
+      <div class="answer">
+        <p>ComicFlow connects to Komga, Kavita, and any OPDS-compatible server. It also supports SMB and WebDAV network storage for reading directly from a NAS or shared folder.</p>
+      </div>
+    </details>
+    <details>
+      <summary>How do I connect a server?</summary>
+      <div class="answer">
+        <p>Go to Settings, then add a new server. Enter the server URL and your credentials. ComicFlow will discover your libraries and titles automatically. Your Apple TV and server must be on the same local network, or the server must be accessible via the internet.</p>
+      </div>
+    </details>
+    <details>
+      <summary>How do I add manga sources?</summary>
+      <div class="answer">
+        <p>In Settings, open Manga Sources and add a third-party repository URL. The app does not ship with any third-party sources pre-installed — you provide the repository URLs yourself.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Pricing &amp; Purchases</div>
+    <details>
+      <summary>What does the in-app purchase include?</summary>
+      <div class="answer">
+        <p>ComicFlow offers a 7-day free trial with full access. After the trial, you can read 5 chapters per day for free. A one-time in-app purchase removes all reading limits — unlimited chapters, forever. No subscription, no recurring charges.</p>
+      </div>
+    </details>
+    <details>
+      <summary>How do I restore my purchase?</summary>
+      <div class="answer">
+        <p>Open Settings and tap Restore Purchase. Your Apple ID must match the one used for the original purchase. If the restore doesn't appear, make sure you're signed into the correct Apple ID on your Apple TV.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Troubleshooting</div>
+    <details>
+      <summary>Can't connect to my server</summary>
+      <div class="answer">
+        <p>Check that your Apple TV and server are on the same network. Verify the server URL and credentials are correct. For SMB, ensure the share is accessible and the user has read permissions. Try restarting your server and Apple TV if the connection was previously working.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Pages won't load or appear blank</summary>
+      <div class="answer">
+        <p>This usually means the server connection timed out or the comic file is corrupted. Try reopening the title. If the issue persists with server-hosted comics, check your server logs. Built-in demo comics should always load — if they don't, try deleting and reinstalling the app.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Contact</div>
+    <p style="color:var(--text-dim);font-size:.9375rem;margin-bottom:1rem">Can't find what you're looking for? Reach out and we'll help.</p>
+    <div class="contact-card">
+      <span class="contact-label">Email</span>
+      <span class="contact-value"><a href="mailto:charles8260@gmail.com">charles8260@gmail.com</a></span>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <p><a href="index.html">ComicFlow</a>&ensp;·&ensp;© 2026 ComicFlow</p>
+</footer>
+
+</body>
+</html>
